@@ -1,2 +1,9 @@
 # ninja log v5
 562	676	7057255737377247	TestProjCPlus.exe	3041b9b552686ab8
+1	1189	7061375558598944	CMakeFiles/VectorCalc.dir/main.cpp.obj	75fe5e39b75fe8e2
+1191	1866	7061375565340865	VectorCalc.exe	e1e301462ac8ebe9
+1	596	7061399111289093	build.ninja	cc89acd4ac6ca37e
+3	575	7061399117327754	CMakeFiles/VectorCalc.dir/main.cpp.obj	75fe5e39b75fe8e2
+575	685	7061399118383067	VectorCalc.exe	e1e301462ac8ebe9
+3	588	7061404439551846	CMakeFiles/VectorCalc.dir/main.cpp.obj	75fe5e39b75fe8e2
+588	705	7061404440687231	VectorCalc.exe	e1e301462ac8ebe9

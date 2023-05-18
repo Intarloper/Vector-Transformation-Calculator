@@ -1,20 +1,86 @@
 #include <iostream>
 #include <cmath>
 
-void InputVector(int arr[], int tArr[], double alphaX, double betaY, double thetaZ, char decision){
-    //Define inital Vector
-    int vector[3][1] = {
+double DegreeToRadian(double rad){
+    const double PI = 3.14159265359;
+    double result;
+
+    result = (rad * PI) / 180;
+
+    return result;
+}
+
+void TranslateVector(float arr[], float tArr[]){
+    //Define Initial
+    float vector[3][1] = {
             {arr[0]},
             {arr[1]},
             {arr[2]}
     };
-    //Define Transformation Matrix
-    int transVector[3][3] = {
-            {tArr[0], tArr[1], tArr[2]},
-            {tArr[3], tArr[4], tArr[5]},
-            {tArr[6], tArr[7] ,tArr[8]}
+    //Define Translation
+    float translateMatrix[3][1] = {
+            {tArr[0]},
+            {tArr[1]},
+            {tArr[2]}
+    };
+    //Translate
+    float translatedVector[3][1] = {
+            {vector[0][0] + translateMatrix[0][0]},
+            {vector[1][0] + translateMatrix[1][0]},
+            {vector[2][0] + translateMatrix[2][0]}
+
     };
 
+    //Print Out Results
+    std::cout << "Initial Vector:    "  << "Output Vector: " <<  std::endl;
+    std::cout << vector[0][0] << "                   " << round(translatedVector[0][0]) << std::endl;
+    std::cout << vector[1][0] << "     --------->    " << round(translatedVector[1][0]) << std::endl;
+    std::cout << vector[2][0] << "                   " << round(translatedVector[2][0]) << std::endl;
+
+
+
+
+}
+
+void ScaleVector(float arr[], float sArr[]){
+    //Define Initial
+    float vector[3][1] = {
+            {arr[0]},
+            {arr[1]},
+            {arr[2]}
+    };
+    //Define scale
+    float scaleMatrix[3][1] = {
+            {sArr[0]},
+            {sArr[1]},
+            {sArr[2]}
+    };
+    //Scale
+    float scaledVector[3][1] = {
+            {vector[0][0] * scaleMatrix[0][0]},
+            {vector[1][0] * scaleMatrix[1][0]},
+            {vector[2][0] * scaleMatrix[2][0]}
+
+    };
+
+    //Print Out Results
+    std::cout << "Initial Vector:    "  << "Output Vector: " <<  std::endl;
+    std::cout << vector[0][0] << "                   " << round(scaledVector[0][0]) << std::endl;
+    std::cout << vector[1][0] << "     --------->    " << round(scaledVector[1][0]) << std::endl;
+    std::cout << vector[2][0] << "                   " << round(scaledVector[2][0]) << std::endl;
+
+
+
+
+}
+
+void RotateVector(float arr[], double alphaX, double betaY, double thetaZ){
+    //Define initial Vector
+    float vector[3][1] = {
+            {arr[0]},
+            {arr[1]},
+            {arr[2]}
+    };
     //Define rotation matrix and angle inputs
 
     double rotationMatrix[3][3] = {
@@ -28,59 +94,35 @@ void InputVector(int arr[], int tArr[], double alphaX, double betaY, double thet
 
     };
 
-    if(decision == 82){
-        double rotatedVector[3][1] = {
-                {vector[0][0] * rotationMatrix[0][0] + vector[1][0] * rotationMatrix[0][1] + vector[2][0] * rotationMatrix[0][2]},
-                {vector[0][0] * rotationMatrix[1][0] + vector[1][0] * rotationMatrix[1][1] + vector[2][0] * rotationMatrix[1][2]},
-                {vector[0][0] * rotationMatrix[2][0] + vector[1][0] * rotationMatrix[2][1] + vector[2][0] * rotationMatrix[2][2]}
-        };
+    //Rotate
+    double rotatedVector[3][1] = {
+            {vector[0][0] * rotationMatrix[0][0] + vector[1][0] * rotationMatrix[0][1] + vector[2][0] * rotationMatrix[0][2]},
+            {vector[0][0] * rotationMatrix[1][0] + vector[1][0] * rotationMatrix[1][1] + vector[2][0] * rotationMatrix[1][2]},
+            {vector[0][0] * rotationMatrix[2][0] + vector[1][0] * rotationMatrix[2][1] + vector[2][0] * rotationMatrix[2][2]}
+    };
 
-        //Print out results
-        std::cout << "Initial Vector:    "  << "Output Vector: " <<  std::endl;
-        std::cout << vector[0][0] << "                   " << round(rotatedVector[0][0]) << std::endl;
-        std::cout << vector[1][0] << "     --------->    " << round(rotatedVector[1][0]) << std::endl;
-        std::cout << vector[2][0] << "                   " << round(rotatedVector[2][0]) << std::endl;
-    }
-    else if(decision == 84){
-        //Define Output Vector
-        int outVector[3][1] = {
-                {vector[0][0] * transVector[0][0] + vector[1][0] * transVector[0][1] + vector[2][0] * transVector[0][2]},
-                {vector[0][0] * transVector[1][0] + vector[1][0] * transVector[1][1] + vector[2][0] * transVector[1][2]},
-                {vector[0][0] * transVector[2][0] + vector[1][0] * transVector[2][1] + vector[2][0] * transVector[2][2]}
-        };
+    //Print out results
+    std::cout << "Initial Vector:    "  << "Output Vector: " <<  std::endl;
+    std::cout << vector[0][0] << "                   " << round(rotatedVector[0][0]) << std::endl;
+    std::cout << vector[1][0] << "     --------->    " << round(rotatedVector[1][0]) << std::endl;
+    std::cout << vector[2][0] << "                   " << round(rotatedVector[2][0]) << std::endl;
 
 
-
-        //Print out results
-        std::cout << "Initial Vector:    "  << "Output Vector: " <<  std::endl;
-        std::cout << vector[0][0] << "                   " << outVector[0][0] << std::endl;
-        std::cout << vector[1][0] << "     --------->    " << outVector[1][0] << std::endl;
-        std::cout << vector[2][0] << "                   " << outVector[2][0] << std::endl;
-    }
-    else{
-        std::cout << "Invalid" << std::endl;
-    }
 
 }
 
-double DegreeToRadian(double rad){
-    const double PI = 3.14159265359;
-    double result;
 
-    result = (rad * PI) / 180;
-
-    return result;
-}
 
 
 int main() {
-    int vecX;
-    int vecY;
-    int vecZ;
-    int inputVec[3];
+    float vecX;
+    float vecY;
+    float vecZ;
+    float inputVec[3];
     char decision;
-
     double alpha, beta, theta;
+    float translateX, translateY, translateZ;
+    float scaleX, scaleY, scaleZ;
 
     std::cout << "Input initial vector in order of x , y , then z: " << std::endl;
     std::cin >> vecX;
@@ -92,7 +134,7 @@ int main() {
     inputVec[2] = vecZ;
 
 
-    std::cout << "Would you like to rotate or translate vector? (R or T)" << std::endl;
+    std::cout << "Would you like to rotate, scale, or translate the vector? (R, S, T)" << std::endl;
     std::cin >> decision;
     if(decision == 82){
         std::cout << "Input rotation on each axis (x, y ,z) ; Input zero for no rotation" << std::endl;
@@ -104,20 +146,33 @@ int main() {
         beta = DegreeToRadian(beta);
         theta = DegreeToRadian(theta);
 
-        std::cout << alpha << std::endl;
+        RotateVector(inputVec, alpha, beta, theta);
+
+    }
+    else if(decision == 83){
+        std::cout << "Input scale on each axis (x, y ,z) ; Input zero for no scale" << std::endl;
+        std::cin >> scaleX;
+        std::cin >> scaleY;
+        std::cin >> scaleZ;
+
+        float scaleArray[3] = {scaleX, scaleY, scaleZ};
+
+        ScaleVector(inputVec, scaleArray);
     }
     else if(decision == 84){
+        std::cout << "Input translation on each axis (x, y ,z) ; Input zero for no translation" << std::endl;
+        std::cin >> translateX;
+        std::cin >> translateY;
+        std::cin >> translateZ;
 
+        float translateArray[3] = {translateX,translateY,translateZ};
+
+
+        TranslateVector(inputVec, translateArray);
     }
     else{
         std::cout << "Invalid" << std::endl;
     }
-
-    int transformMatrix[] = {1, 2 ,3 ,4 ,5 ,6 ,7 ,8 ,9};
-
-
-
-    InputVector(inputVec, transformMatrix, alpha, beta, theta, decision);
 
     return 0;
 }
